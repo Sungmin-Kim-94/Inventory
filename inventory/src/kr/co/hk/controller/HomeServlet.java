@@ -16,10 +16,12 @@ public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("HomeServlet.doGet() 실행");
+		System.out.println("HomeServlet.doGet() [START]");
 		DBConnector.getConnection();
 		
 		Utils.dispatcher("home", request, response);
+		
+		System.out.println("HomeServlet.doGet() [END]");
 	}
 
 }

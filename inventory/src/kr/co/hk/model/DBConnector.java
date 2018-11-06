@@ -43,7 +43,7 @@ public class DBConnector {
 		final String DB_DRIVER = "oracle.jdbc.OracleDriver";
 		final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		final String DB_USERNAME = "hr";
-		final String DB_PASSWORD = "hkitedu";
+		final String DB_PASSWORD = "hr";	// hkitedu
 		
 		Connection conn = null;
 		
