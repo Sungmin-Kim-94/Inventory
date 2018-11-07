@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.hk.common.Utils;
+import kr.co.hk.model.ExportVO;
+import kr.co.hk.model.ImportVO;
 import kr.co.hk.model.ProductDAO;
 import kr.co.hk.model.ProductVO;
 
@@ -30,9 +32,11 @@ public class ListServlet extends HttpServlet {
 		}
 		
 		if (searchType.equals("import")) {
-			
+			List<ImportVO> importList = ProductDAO.getImportList();
+			request.setAttribute("importList", importList);
 		} else if (searchType.equals("export")) {
-			
+			List<ExportVO> exportList = ProductDAO.getExportList();
+			request.setAttribute("exportList", exportList);
 		} else {
 			List<ProductVO> productList = ProductDAO.getProductList();
 			request.setAttribute("productList", productList);
@@ -42,10 +46,4 @@ public class ListServlet extends HttpServlet {
 		
 		System.out.println("ListServlet.doGet() [END]");
 	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 }
