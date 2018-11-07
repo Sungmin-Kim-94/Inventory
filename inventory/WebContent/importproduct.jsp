@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="kr.co.hk.model.*"%>
+<%
+	List<ProductVO> productList = (List<ProductVO>) request
+	.getAttribute("productList");
+%>
 <script type="text/javascript">
 	function chkValid() {
 		var frm = document.import_frm
-		
+
 		if (frm.i_cnt.value == "") {
 			alert("숫자를 입력하세요.")
 			return false
@@ -14,28 +20,36 @@
 			return true
 		}
 	}
-	
+
 	function goList() {
-		location.href = "list?search=import";
+		location.href = "importlist";
 	}
 </script>
 <section>
 	<h3 class="section-title">${title}</h3>
-	<form name="import_frm" action="importproduct" method="post" onsubmit="return chkValid();">
-		<input type="hidden" name="p_no" value="${vo.p_no}" />
+	<form name="import_frm" action="importproduct" method="post"
+		onsubmit="return chkValid();">
 		<table>
 			<tbody>
 				<tr>
-					<th>물품 번호</th>
-					<td>${vo.p_no}</td>
-				</tr>
-				<tr>
-					<th>물품 이름</th>
-					<td>${vo.p_name}</td>
-				</tr>
-				<tr>
-					<th>현재 수량</th>
-					<td>${vo.p_cnt}</td>
+					<th>물품 목록</th>
+					<td>
+						<select name="p_no">
+							<%
+								if (productList != null && productList.size() > 0) {
+									for (ProductVO product : productList) {
+							%>
+							<option value="<%=product.getP_no()%>"><%=product.getP_name()%></option>
+							<%
+								}
+								} else {
+							%>
+							<option disabled>등록된 물품이 없습니다.</option>
+							<%
+								}
+							%>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<th>

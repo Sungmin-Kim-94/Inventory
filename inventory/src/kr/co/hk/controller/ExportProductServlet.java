@@ -1,6 +1,7 @@
 package kr.co.hk.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.hk.common.Utils;
 import kr.co.hk.model.ExportVO;
-import kr.co.hk.model.ImportVO;
 import kr.co.hk.model.ProductDAO;
 import kr.co.hk.model.ProductVO;
 
@@ -23,13 +23,9 @@ public class ExportProductServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("ExportProductServlet.doGet() [START]");
 
-		String p_no = request.getParameter("p_no");
-		System.out.println("p_no=" + p_no);
-		int intP_no = Integer.parseInt(p_no);
-
-		ProductVO vo = ProductDAO.getProduct(intP_no);
-		request.setAttribute("vo", vo);
-
+		List<ProductVO> productList = ProductDAO.getProductList();
+		request.setAttribute("productList", productList);
+		
 		Utils.dispatcher("exportproduct", "물품 출고", request, response);
 
 		System.out.println("ExportProductServlet.doGet() [END]");
@@ -39,6 +35,7 @@ public class ExportProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("ExportProductServlet.doPost() [START]");
+		request.setCharacterEncoding("UTF-8");
 		
 		String p_no = request.getParameter("p_no");
 		String e_cnt = request.getParameter("e_cnt");
@@ -49,13 +46,14 @@ public class ExportProductServlet extends HttpServlet {
 		int intE_cnt = Integer.parseInt(e_cnt);
 		
 		ProductVO productVo = ProductDAO.getProduct(intP_no);
+		
 		ExportVO exportVO = new ExportVO();
 		exportVO.setProduct(productVo);
 		exportVO.setE_cnt(intE_cnt);
 		
 		ProductDAO.insertExport(exportVO);
 		
-		response.sendRedirect("list?search=export");
+		response.sendRedirect("exportlist");
 		
 		System.out.println("ExportProductServlet.doPost() [END]");
 	}
