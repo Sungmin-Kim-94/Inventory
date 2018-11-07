@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("HomeServlet.doGet() [START]");
 		DBConnector.getConnection();
 		
-		Utils.dispatcher("home", request, response);
+		Utils.dispatcher("home", "홈", request, response);
 		
 		System.out.println("HomeServlet.doGet() [END]");
 	}

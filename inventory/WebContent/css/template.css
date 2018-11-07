@@ -27,6 +27,14 @@ a {
 	text-decoration: none
 }
 
+table caption {
+	display: none
+}
+
+button {
+	cursor: pointer
+}
+
 header, footer {
 	display: flex;
 	width: 100%;

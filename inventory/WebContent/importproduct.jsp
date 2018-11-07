@@ -30,6 +30,10 @@
 	<form name="import_frm" action="importproduct" method="post"
 		onsubmit="return chkValid();">
 		<table>
+			<colgroup>
+				<col class="name" />
+				<col class="value" />
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>물품 목록</th>
@@ -61,7 +65,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="submit">입고</button>
-		<button type="button" onclick="goList()">조회</button>
+		<div class="btns">
+			<button type="submit">입고</button>
+			<button type="button" onclick="goList()">조회</button>
+		</div>
+
 	</form>
 </section>

@@ -9,8 +9,14 @@
 <section>
 	<h3 class="section-title">${title}</h3>	
 	
-	<div class="product">
+	<div class="export">
 		<table>
+			<colgroup>
+				<col class="e_no" />
+				<col class="p_name" />
+				<col class="e_cnt" />
+				<col class="e_date" />
+			</colgroup>
 			<thead>
 				<tr>
 					<th>출고 번호</th>

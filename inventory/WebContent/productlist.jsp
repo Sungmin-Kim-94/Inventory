@@ -16,6 +16,12 @@
 	
 	<div class="product">
 		<table>
+			<colgroup>
+				<col class="p_no" />
+				<col class="p_name" />
+				<col class="p_cnt" />
+				<col class="p_regdate" />
+			</colgroup>
 			<thead>
 				<tr>
 					<th>물품 번호</th>

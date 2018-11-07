@@ -9,8 +9,14 @@
 <section>
 	<h3 class="section-title">${title}</h3>	
 	
-	<div class="product">
+	<div class="import">
 		<table>
+			<colgroup>
+				<col class="i_no" />
+				<col class="p_name" />
+				<col class="i_cnt" />
+				<col class="i_date" />
+			</colgroup>
 			<thead>
 				<tr>
 					<th>입고 번호</th>

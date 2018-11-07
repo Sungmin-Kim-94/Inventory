@@ -22,7 +22,7 @@
 		} else {
 			return true
 		}
-		
+
 		return false
 	}
 
@@ -35,6 +35,10 @@
 	<form name="export_frm" action="exportproduct" method="post"
 		onsubmit="return chkValid();">
 		<table>
+			<colgroup>
+				<col class="name" />
+				<col class="value" />
+			</colgroup>
 			<tbody>
 				<tr>
 					<th>물품 목록</th>
@@ -66,7 +70,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="submit">출고</button>
-		<button type="button" onclick="goList()">조회</button>
+		<div class="btns">
+			<button type="submit">출고</button>
+			<button type="button" onclick="goList()">조회</button>
+		</div>
 	</form>
 </section>
