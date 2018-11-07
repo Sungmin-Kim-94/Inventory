@@ -1,6 +1,7 @@
 package kr.co.hk.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +21,10 @@ public class ImportProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ImportProductServlet.doGet() [START]");
+		System.out.println("ImportProductServlet.doGet() [START]");		
 		
-		String p_no = request.getParameter("p_no");
-		System.out.println("p_no=" + p_no);
-		int intP_no = Integer.parseInt(p_no);
-		
-		ProductVO vo = ProductDAO.getProduct(intP_no);
-		request.setAttribute("vo", vo);
+		List<ProductVO> productList = ProductDAO.getProductList();
+		request.setAttribute("productList", productList);
 		
 		Utils.dispatcher("importproduct", "물품 입고", request, response);
 
@@ -55,7 +52,7 @@ public class ImportProductServlet extends HttpServlet {
 		
 		ProductDAO.insertImport(importVO);
 		
-		response.sendRedirect("list?search=import");
+		response.sendRedirect("importlist");
 		
 		System.out.println("ImportProductServlet.doPost() [END]");
 	}

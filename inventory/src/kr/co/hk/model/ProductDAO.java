@@ -152,6 +152,30 @@ public class ProductDAO {
 		return result;
 	}
 
+	public static int updateProductName(int p_no, String p_name) {
+		int result = -1;
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		String sql = " UPDATE I_PRODUCT " + " SET P_NAME = ? "
+				+ " WHERE P_NO = ? ";
+		
+		try {
+			conn = DBConnector.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, p_name);
+			ps.setInt(2, p_no);
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnector.close(conn, ps);
+		}
+		
+		return result;
+	}
+	
 	public static int updateProductCnt(int p_no, int p_cnt) {
 		int result = -1;
 

@@ -12,35 +12,40 @@ import kr.co.hk.common.Utils;
 import kr.co.hk.model.ProductDAO;
 import kr.co.hk.model.ProductVO;
 
-@WebServlet("/regproduct")
-public class RegisterProductServlet extends HttpServlet {
+@WebServlet("/updateproduct")
+public class UpdateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RegisterProductServlet.doGet() [START]");
+		System.out.println("UpdateProductServlet.doGet() [START]");
 		
-		Utils.dispatcher("regproduct", "물품 등록", request, response);
+		String p_no = request.getParameter("p_no");
+		int intP_no = Integer.parseInt(p_no);
 		
-		System.out.println("RegisterProductServlet.doGet() [END]");
-	}
+		ProductVO vo = ProductDAO.getProduct(intP_no);
+		request.setAttribute("vo", vo);
 
+		Utils.dispatcher("updateproduct", "물품 정보 수정", request, response);
+
+		System.out.println("UpdateProductServlet.doGet() [END]");
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RegisterProductServlet.doPost() [START]");
+		System.out.println("UpdateProductServlet.doPost() [START]");
 		request.setCharacterEncoding("UTF-8");
 		
+		String p_no = request.getParameter("p_no");
 		String p_name = request.getParameter("p_name");
+		int intP_no = Integer.parseInt(p_no);
 		
-		System.out.println("p_name=" + p_name);
-		
-		ProductVO vo = new ProductVO();
-		vo.setP_name(p_name);
-		ProductDAO.registerProduct(vo);
+		ProductDAO.updateProductName(intP_no, p_name);
 		
 		response.sendRedirect("productlist");
 		
-		System.out.println("RegisterProductServlet.doPost() [END]");
+		System.out.println("UpdateProductServlet.doPost() [END]");
 	}
-
 }
