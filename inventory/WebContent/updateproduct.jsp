@@ -3,17 +3,17 @@
 <script type="text/javascript">
 	function chkValid() {
 		var frm = document.update_frm
-		
+
 		if (frm.p_name.value == '') {
 			alert("물품 이름을 입력하세요.")
 			return false
 		} else {
 			return true
 		}
-		
+
 		return false
 	}
-	
+
 	function goList() {
 		location.href = 'productlist'
 	}
@@ -47,7 +47,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="submit">수정</button>
-		<button type="button" onclick="goList()">조회</button>
+		<div class="btns">
+			<button type="submit">수정</button>
+			<button type="button" onclick="goList()">조회</button>
+		</div>
+
 	</form>
 </section>

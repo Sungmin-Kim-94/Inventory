@@ -77,11 +77,6 @@ nav.top-nav {
 	color: white
 }
 
-.top-nav>.tn-menu>.tn-item>a.active {
-	background-color: lightgray;
-	color: black
-}
-
 .top-nav>.tn-menu>.tn-item:hover>a {
 	background-color: lightgray;
 	color: black
